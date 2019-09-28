@@ -99,7 +99,7 @@ public class BookDAO {
         try {
             PreparedStatement statement = jdbcConnection.prepareStatement(sql);
             statement.setInt(1, id);
-            statement.execute();
+            statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
