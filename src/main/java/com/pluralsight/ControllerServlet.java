@@ -128,13 +128,6 @@ public class ControllerServlet extends HttpServlet {
         response.sendRedirect("list");
     }
 
-
-    /*
-    In the ControllerServlet's showEditForm() method, get the id of the book passed in with the request by accessing the request’s getParameter() method with the key id - you'll need to use Integer.parseInt() to convert the String to an int.
-
-Next, create a variable of type Book, and store the result of calling getBook() on the bookDAO object and passing that id as a parameter.
-
-     */
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int bookId = Integer.parseInt(request.getParameter("id"));
         Book book = bookDAO.getBook(bookId);
