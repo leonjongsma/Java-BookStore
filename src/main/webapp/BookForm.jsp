@@ -22,9 +22,13 @@
         <form name="book_form" method="post" action="insert">
     </c:if>
     <h2>
-        <c:if test="${book == null}">
-            New Book Form
+        <c:if test="${book != null}">
+            EditBookForm
         </c:if>
+        <c:if test="${book == null}">
+            NewBookForm
+        </c:if>
+
     </h2>
 
     <c:if test="${book != null}">
@@ -34,9 +38,9 @@
 <p><label>Title:</label>
     <input type="text" name="booktitle" value=<c:out value='${book.title} ' /> /></p>
     <p><label>Author:</label>
-    <input type="text" name="bookauthor" value=<c:out value='${book.bookauthor} ' /> /></p>
+    <input type="text" name="bookauthor" value=<c:out value='${book.author} ' /> /></p>
     <p><label>Price:</label>
-    <input type="text" name="bookprice" value=<c:out value='${book.bookauthor} ' /> /></p>
+    <input type="text" name="bookprice" value=<c:out value='${book.price} ' /> /></p>
     <p><input type="submit" value="Submit"></p>
     </form>
     </div>
