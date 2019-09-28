@@ -60,6 +60,10 @@ public class ControllerServlet extends HttpServlet {
                 case "/delete":
                     deleteBook(request, response);
                     break;
+                case "/edit":
+                    showEditForm(request, response);
+                    break;
+
                 default:
                     listBooks(request, response);
                     break;
@@ -119,9 +123,24 @@ public class ControllerServlet extends HttpServlet {
 
     private void deleteBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    	int id = Integer.parseInt(request.getParameter("id"));
-    	bookDAO.deleteBook(id);
-    	response.sendRedirect("list");
+        int id = Integer.parseInt(request.getParameter("id"));
+        bookDAO.deleteBook(id);
+        response.sendRedirect("list");
     }
 
+
+    /*
+    In the ControllerServlet's showEditForm() method, get the id of the book passed in with the request by accessing the request’s getParameter() method with the key id - you'll need to use Integer.parseInt() to convert the String to an int.
+
+Next, create a variable of type Book, and store the result of calling getBook() on the bookDAO object and passing that id as a parameter.
+
+     */
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int bookId = Integer.parseInt(request.getParameter("id"));
+        Book book = bookDAO.getBook(bookId);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/BookForm.jsp");
+        request.setAttribute("book", book);
+        requestDispatcher.forward(request, response);
+    }
 }
+
